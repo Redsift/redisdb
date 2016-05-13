@@ -9,7 +9,7 @@ Environment="HOME=/root"
 Environment="CN=%p-%i"
 Environment="SKYHOST=%p-%i"
 TimeoutStartSec=0
-ExecStartPre=/usr/bin/docker-conditional-pull quay.io/redsift/redis
+ExecStartPre=/usr/bin/docker-conditional-pull quay.io/redsift/redisdb
 ExecStartPre=-/usr/bin/docker kill $CN
 ExecStartPre=-/usr/bin/docker rm $CN
 ExecStart=/usr/bin/docker run --name $CN \
