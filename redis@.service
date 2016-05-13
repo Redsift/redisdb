@@ -9,12 +9,12 @@ Environment="HOME=/root"
 Environment="CN=%p-%i"
 Environment="SKYHOST=%p-%i"
 TimeoutStartSec=0
-ExecStartPre=/usr/bin/docker-conditional-pull quay.io/redsift/redis:%T
+ExecStartPre=/usr/bin/docker-conditional-pull quay.io/redsift/redis
 ExecStartPre=-/usr/bin/docker kill $CN
 ExecStartPre=-/usr/bin/docker rm $CN
 ExecStart=/usr/bin/docker run --name $CN \
   -v /var/lib/storage/redis:/data \
-  quay.io/redsift/redis:%T \
+  quay.io/redsift/redis
 ExecStartPost=/usr/bin/update-skydns $CN ${env}/redis/${SKYHOST} 6379 60
 ExecStopPost=/usr/bin/remove-skydns ${env}/redis/${SKYHOST}
 Restart=always
