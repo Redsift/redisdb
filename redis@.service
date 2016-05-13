@@ -14,7 +14,7 @@ ExecStartPre=-/usr/bin/docker kill $CN
 ExecStartPre=-/usr/bin/docker rm $CN
 ExecStart=/usr/bin/docker run --name $CN \
   -v /var/lib/storage/redis:/data \
-  quay.io/redsift/redis
+  quay.io/redsift/redisdb
 ExecStartPost=/usr/bin/update-skydns $CN ${env}/redis/${SKYHOST} 6379 60
 ExecStopPost=/usr/bin/remove-skydns ${env}/redis/${SKYHOST}
 Restart=always
