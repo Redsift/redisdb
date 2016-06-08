@@ -13,7 +13,7 @@ TimeoutStartSec=0
 ExecStartPre=/usr/bin/docker-conditional-pull quay.io/redsift/redisdb
 ExecStartPre=-/usr/bin/docker kill $CN
 ExecStartPre=-/usr/bin/docker rm $CN
-ExecStart=/usr/bin/docker run --name $CN -p ${REDIS_PORT}:${REDIS_PORT} \
+ExecStart=/usr/bin/docker run --rm --name $CN -p ${REDIS_PORT}:${REDIS_PORT} \
   -v /var/lib/storage/redis:/data \
   quay.io/redsift/redisdb
 ExecStartPost=/usr/bin/update-skydns $CN ${env}/redis/${SKYHOST} ${REDIS_PORT} 60
