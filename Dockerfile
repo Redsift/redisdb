@@ -1,6 +1,6 @@
 FROM redis:3.2-alpine
-MAINTAINER Christos Vontas email: christos@redsift.io version: 1.0.1
+MAINTAINER Christos Vontas email: christos@redsift.io version: 1.0.2
 
-COPY redis.conf /redis.conf
+COPY root /
 
-CMD [ "redis-server", "/redis.conf"]
+CMD ["/usr/bin/startup"]

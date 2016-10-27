@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Available env variables for overriding are:
+# REDIS_LOGLEVEL: debug, verbose, notice (default), warning
+# REDIS_APPENDONLY: yes (default), no
+# REDIS_CONF_FILE : last defence load a redis.conf from some other source e.g. a NAS
+
+/usr/bin/redis.conf.sh >> /etc/redis/redis.conf
+
+echo "Updated redis.conf"
+
+exec redis-server /etc/redis/redis.conf
