@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Redis configuration file from
+# http://download.redis.io/redis-stable/redis.conf
+
 if [ -n "$REDIS_CONF_FILE" ]; then
   cat $REDIS_CONF_FILE
 else
