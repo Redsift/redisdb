@@ -462,7 +462,7 @@ slave-priority 100
 #
 # Please check http://redis.io/topics/persistence for more information.
 
-appendonly ${REDIS_APPENDONLY:-yes}
+appendonly ${REDIS_APPENDONLY:-no}
 
 # The name of the append only file (default: "appendonly.aof")
 
