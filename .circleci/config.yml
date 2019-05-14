@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  container:
+    environment:
+      CONTAINER_NAME: quay.io/redsift/redisdb
+    docker:
+      - image: cibuilds/docker:18.09.6
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker login -u $QUAY_USER -p $QUAY_PASS quay.io
+      - run:
+          name: Build container
+          command: |
+            docker build -t $CONTAINER_NAME .
+
+            VERSION=${CIRCLE_SHA1:0:7}
+            echo "Tagging as $CONTAINER_NAME:$VERSION"
+            docker tag $CONTAINER_NAME:latest $CONTAINER_NAME:$VERSION
+            echo "Tagging as $CONTAINER_NAME:${CIRCLE_BRANCH}"
+            docker tag $CONTAINER_NAME:latest $CONTAINER_NAME:${CIRCLE_BRANCH}
+
+            #docker push $CONTAINER_NAME
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - container:
+          context: org-global
+          filters:
+            branches:
+              only: master
