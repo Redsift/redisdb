@@ -20,7 +20,7 @@ jobs:
             echo "Tagging as $CONTAINER_NAME:${CIRCLE_BRANCH}"
             docker tag $CONTAINER_NAME:latest $CONTAINER_NAME:${CIRCLE_BRANCH}
 
-            #docker push $CONTAINER_NAME
+            docker push $CONTAINER_NAME
 
 workflows:
   version: 2
